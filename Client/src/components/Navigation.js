@@ -11,6 +11,7 @@ import { styled } from '@mui/material/styles';
 import SignInPopper from './SignInPopper';
 import Dashboard from './Dashboard/Dashboard';
 import {ModeContext} from '../App'
+import SignInWithGoogle from './SignInWithGoogle';
 
 const drawerWidth = 240;
 
@@ -92,6 +93,7 @@ export default function Navigation({theme}) {
             <Typography variant="h6" component="div" sx={{flexGrow: 1}}>
                 Finance
             </Typography>
+            <SignInWithGoogle/>
             <SignInPopper/>
         </Toolbar>
         </AppBar>
