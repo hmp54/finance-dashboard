@@ -23,7 +23,7 @@ export default function SignInWithGoogle() {
     }, [])
 
     return (
-        <div id="signInDiv"></div>     
+        <div id="signInDiv" class="test"></div>     
     )
 }
 
