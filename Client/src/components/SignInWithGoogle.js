@@ -1,19 +1,29 @@
 import React, { useEffect } from 'react'
 import {Button, Typography} from '@mui/material'; 
-
+import {GoogleLogin} from 'react-google-login'
+import googleAuthenticationClientID from '../.env'
 
 export default function SignInWithGoogle() {
-   // var GoogleStrategy = require( 'passport-google-oauth2' ).Strategy;
 
-    const handleLogin = async () =>{ 
-        
+    const handleCredentialResponse = (response) => {
+        console.log("Encoded JWT ID token" + response)
     }
 
+    useEffect(()=>{
+        console.log("Private key: " + googleAuthenticationClientID)
+        google.accounts.id.initialize({
+            client_id: googleAuthenticationClientID,
+            callback: handleCredentialResponse
+        });
+
+        google.accounts.id.renderButton(
+            document.getElementById("signInDiv"), 
+            {theme: "outline", size: "large"}
+        );
+    }, [])
 
     return (
-        <Button onClick = {handleLogin} variant='contained' color='inherit'>
-            <Typography sx={{color: 'black'}}>Log in with Google</Typography>
-        </Button>       
+        <div id="signInDiv"></div>     
     )
 }
 
