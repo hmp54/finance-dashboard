@@ -39,7 +39,7 @@ export default function SignInWithGoogle() {
 
     return (
         <div>
-            <div id="signInDiv" class="test"></div>
+            <div id="signInDiv"></div>
             { user &&
                 <div>
                     <SignInPopper/>

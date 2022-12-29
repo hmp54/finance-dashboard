@@ -3,6 +3,9 @@ import React, { useState, createContext, useContext } from 'react'
 import Navigation from './components/Navigation'
 import Dashboard from './components/Dashboard/Dashboard';
 import { ThemeProvider, createTheme } from '@mui/material';
+import ConnectAccounts from './components/ConnectAccounts/ConnectAccounts';
+import {BrowserRouter as Router, Routes, Route} from 'react-router-dom'
+
 
 export const ModeContext = createContext(); 
 
@@ -21,9 +24,13 @@ export default function App() {
 
   return (
     <ModeContext.Provider value={{setMode}}>
-      <ThemeProvider theme={theme}>
-          <Navigation theme={theme}/>
-      </ThemeProvider>
+      <Router>
+        <ThemeProvider theme={theme}>
+            <Navigation theme={theme}/>
+        </ThemeProvider>
+
+
+      </Router>
     </ModeContext.Provider>
   );
 }

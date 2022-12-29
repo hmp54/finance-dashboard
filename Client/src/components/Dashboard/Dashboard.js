@@ -7,12 +7,12 @@ import TransactionsTable from './Charts/TransactionsTable';
 
 export default function Dashboard({open}) {
   return (
-    <Paper 
-      elevation={3} 
-      sx={{width: '100vw', height: '100vh', margin: 0}}
-      position='absolute'
-      open='open'
-    >
+    <Paper       
+    elevation={3} 
+    sx={{width: '100vw', height: '100vh', margin: 0}}
+    position='absolute'
+    open='open'
+  >
       <Box sx={{marginLeft: '2em', marginTop: '5.5em'}}>
         <Box sx={{display:'flex'}}>
           <Box>
@@ -41,8 +41,7 @@ export default function Dashboard({open}) {
           <Charts/>
           <TransactionsTable/>
         </Box>
-        
       </Box>
-    </Paper>
+      </Paper>
   )
 }

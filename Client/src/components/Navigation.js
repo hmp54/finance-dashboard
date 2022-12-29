@@ -1,6 +1,16 @@
 import React, { useState, useContext } from 'react'
 import Box from '@mui/material/Box';
-import {IconButton, Switch, Toolbar, Typography, List, ListItem, ListItemButton, ListItemText, Divider} from '@mui/material';
+import {
+  Paper,
+  IconButton, 
+  Switch, 
+  Toolbar, 
+  Typography, 
+  List, 
+  ListItem, 
+  ListItemButton, 
+  ListItemText, 
+  Divider} from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import SettingsIcon from '@mui/icons-material/Settings';
 import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
@@ -8,10 +18,13 @@ import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import MuiAppBar from '@mui/material/AppBar';
 import MuiDrawer from '@mui/material/Drawer';
 import { styled } from '@mui/material/styles';
-import SignInPopper from './SignInPopper';
-import Dashboard from './Dashboard/Dashboard';
 import {ModeContext} from '../App'
 import SignInWithGoogle from './SignInWithGoogle';
+import AccountTreeIcon from '@mui/icons-material/AccountTree';
+import {Outlet, Routes, Route} from 'react-router-dom'
+import Dashboard from './Dashboard/Dashboard'
+import ConnectAccounts from './ConnectAccounts/ConnectAccounts';
+import Settings from './Settings/Settings'
 
 const drawerWidth = 240;
 
@@ -63,11 +76,19 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 
 export default function Navigation({theme}) {
     const [open, setOpen] = useState(false); 
+    const [activeScreen, setActiveScreen] = useState('Dashboard'); 
     const {setMode} = useContext(ModeContext); 
 
-    const toggleDrawer = () =>{
-        setOpen(!open); 
+
+    const toggleActiveScreen = (screen) => {
+     
     }
+
+
+    const toggleDrawer = () =>{
+      setOpen(!open); 
+    }
+
 
     const toggleTheme = (e) => {
       if(e.target.checked)
@@ -75,6 +96,7 @@ export default function Navigation({theme}) {
       else 
         setMode('light')
     }
+
 
   return (
     <Box sx={{display: 'flex'}}>
@@ -113,11 +135,15 @@ export default function Navigation({theme}) {
             </Toolbar>
             <Divider/>
             <List>
-                <ListItemButton>
+                <ListItemButton to = "/">
                     <AccountBalanceIcon sx={{marginRight: '36px', marginLeft: '15px'}}/>
                     <ListItemText>Dashboard</ListItemText>
                 </ListItemButton>
-                <ListItemButton>
+                <ListItemButton to = "/connect-accounts">
+                    <AccountTreeIcon sx={{marginRight: '36px', marginLeft: '15px'}}/>
+                    <ListItemText>Connect Accounts</ListItemText>
+                </ListItemButton>
+                <ListItemButton to="/settings">
                     <SettingsIcon sx={{marginRight: '36px', marginLeft: '15px'}}/>
                     <ListItemText>Settings</ListItemText>
                 </ListItemButton>
@@ -133,7 +159,13 @@ export default function Navigation({theme}) {
                 />
             </ListItem>
         </Drawer>
-        <Dashboard open={open}/>
+
+        <Routes>
+          <Route path="/" element={<Dashboard open={open}/>}/>
+          <Route path="/connect-accounts" element={<ConnectAccounts open={open}/>}/>
+          <Route path="/settings" element = {<Settings open={open}/>}/>
+        </Routes>
+        
   </Box>
   )
 }
