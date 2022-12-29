@@ -1,5 +1,5 @@
 #Ignore API key files
-/.secret
+.secret/
 
 # DS_Store
 */.DS_Store
