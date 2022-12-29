@@ -12,7 +12,6 @@ import SignInPopper from './SignInPopper';
 import Dashboard from './Dashboard/Dashboard';
 import {ModeContext} from '../App'
 import SignInWithGoogle from './SignInWithGoogle';
-import SignOutWithGoogle from './SignOutWithGoogle';
 
 const drawerWidth = 240;
 
@@ -95,8 +94,6 @@ export default function Navigation({theme}) {
                 Finance
             </Typography>
             <SignInWithGoogle/>
-            <SignOutWithGoogle/>
-            <SignInPopper/>
         </Toolbar>
         </AppBar>
         <Drawer variant="permanent" open={open} sx={{height: '100vh', paddingRight: '10px', marginRight: '-1rem'}}>

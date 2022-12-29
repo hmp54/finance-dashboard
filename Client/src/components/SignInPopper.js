@@ -80,7 +80,7 @@ export default function SignInPopper() {
                     >
                         <MenuItem onClick={handleClose}>
                             <LoginIcon  sx ={{marginRight: '16px'}}/>
-                            <Typography sx={{marginRight: '8px'}}>Login</Typography>
+                            <Typography sx={{marginRight: '8px'}}>Sign Out</Typography>
                         </MenuItem>
                     </MenuList>
                     </ClickAwayListener>
