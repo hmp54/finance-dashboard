@@ -1,6 +1,8 @@
 #Ignore API key files
 .secret/
 
+.env
+
 # DS_Store
 */.DS_Store
 node_modules

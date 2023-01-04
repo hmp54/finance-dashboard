@@ -162,7 +162,7 @@ export default function Navigation({theme}) {
 
         <Routes>
           <Route path="/" element={<Dashboard open={open}/>}/>
-          <Route path="/connect-accounts" element={<ConnectAccounts open={open}/>}/>
+          <Route path="/connect-accounts" element={<ConnectAccounts openNav={open}/>}/>
           <Route path="/settings" element = {<Settings open={open}/>}/>
         </Routes>
         
