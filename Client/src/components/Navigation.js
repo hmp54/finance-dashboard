@@ -115,7 +115,7 @@ export default function Navigation({theme}) {
             <Typography variant="h6" component="div" sx={{flexGrow: 1}}>
                 Finance
             </Typography>
-            <SignInWithGoogle/>
+            {/*<SignInWithGoogle/>*/}
         </Toolbar>
         </AppBar>
         <Drawer variant="permanent" open={open} sx={{height: '100vh', paddingRight: '10px', marginRight: '-1rem'}}>
