@@ -1,58 +1,63 @@
-import React, { useEffect, useState } from 'react'
-import {Button, Typography} from '@mui/material'; 
-import {GoogleLogin} from 'react-google-login'
-//import {googleAuthenticationClientID} from '../.secret/keys'
+import React, { useEffect, useState, useRef } from 'react'
+import {Button} from '@mui/material'; 
 import jwt_decode from 'jwt-decode'; 
 import SignInPopper from './SignInPopper';
+import { googleLogout, GoogleLogin } from '@react-oauth/google';
 
 export default function SignInWithGoogle() {
-    const [user, setUser] = useState(); 
-
+    const [user, setUser] = useState([]); 
+    const [profile, setProfile] = useState()
 
     const handleCredentialResponse = (response) => {
-        console.log("Encoded JWT ID token" + response.credential); 
+        console.log(response)
         var userObject = jwt_decode(response.credential); 
-        console.log(userObject); 
         setUser(userObject); 
-        document.getElementById("signInDiv").hidden = true; 
+        setProfile(["test"])
     }
 
-
-    const handleLogout = (event) =>{ 
-        setUser(); 
-        document.getElementById("signInDiv").hidden = false; 
+    const errorMessage = (error)=>{
+        console.log(error)
     }
 
+    const logOut = () => {
+        googleLogout();
+        setProfile(null);
+    };
 
-    useEffect(()=>{
-        google.accounts.id.initialize({
-            client_id: googleAuthenticationClientID,
-            callback: handleCredentialResponse
-        });
-
-        google.accounts.id.renderButton(
-            document.getElementById("signInDiv"), 
-            {theme: "outline", size: "large"}
-        );
-    }, [])
-
-
-    return (
-        <div>
-            <div id="signInDiv"></div>
-            { user &&
-                <div>
-                    <SignInPopper/>
-                    <Button variant = "contained" onClick={handleLogout}>Sign out</Button>
-                </div>
-            }
-        </div>
+    return(
+        profile ? <Button variant="contained" onClick={logOut}>Log out</Button>
+            : <GoogleLogin id="sign-in-button" onSuccess={handleCredentialResponse} onError={errorMessage} />
+     
     )
 }
+    // const [user, setUser] = useState(); 
+    // 
+    // const googleAuth = document.createElement("google-auth")
+    // const divRef = useRef(null);
 
-/**
- * 
- * <div>
-                    <img src={user.picture} style = {{height: '2rem', width: '2rem', borderRadius:'15px'}}/>
-                </div>
- */
+
+
+    // const handleLogout = (event) =>{ 
+    //     setUser(); 
+    //     document.getElementById("sign-in-button").hidden = false; 
+    // }
+
+    // useEffect(() => {
+    //     const google = window.google;
+    //     console.log("ATTEMPTING TO CONNECT")
+    //         google.onload = () => {
+    //             google.accounts.id.initialize({
+    //                 client_id: GOOGLE_CLIENT_ID,
+    //                 callback: handleCredentialResponse
+    //             });
+    //             console.log("Attempting to render: ")
+    //             google.accounts.id.renderButton(
+    //                 divRef.current, 
+    //                 {theme: "outline", size: "large"}
+    //             )            
+    //         }
+    // }, [divRef.current]) 
+
+    // return (
+    //     <button onClick={divRef}/>
+    // )

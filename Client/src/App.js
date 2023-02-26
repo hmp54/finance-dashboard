@@ -28,8 +28,6 @@ export default function App() {
         <ThemeProvider theme={theme}>
             <Navigation theme={theme}/>
         </ThemeProvider>
-
-
       </Router>
     </ModeContext.Provider>
   );
